@@ -18,12 +18,6 @@ const HomePage = () => {
     const {user} = useContext(UserContext)
     const [formData, setFormData] = useState<any>({cr77d_id:user?.usermail,cr77d_name:null,cr77d_firstname:null,cr77d_lastname:null,cr77d_address:null,cr77d_pincode:null,cr77d_phonenumber:null,cr77d_assetname:null,cr77d_assetdetails:null,cr77d_assetvalue:null,cr77d_specialrequest:null,cr77d_personaldetailsverified:false,cr77d_additionaldetailsverified:false,cr77d_assetvalueverified:false});
     const [formErrorData,setFormErrorData] =useState<any>({cr77d_id_error:false,cr77d_name_error:false,cr77d_firstname_error:false,cr77d_lastname_error:false,cr77d_address_error:false,cr77d_pincode_error:false,cr77d_phonenumber_error:false,cr77d_assetname_error:false,cr77d_assetdetails_error:false,cr77d_assetvalue_error:false,cr77d_specialrequest_error:false,cr77d_personaldetailsverified_error:false,cr77d_additionaldetailsverified_error:false,cr77d_assetvalueverified_error:false})
-    // const [formOneData, setFormOneData] = useState<any>({cr77d_id:user?.usermail,cr77d_name:"",cr77d_firstname:"",cr77d_lastname:"",cr77d_address:"",cr77d_pincode:"",cr77d_phonenumber:""});
-    // const [formOneErrorData,setFormOneErrorData] =useState<any>({cr77d_id_error:false,cr77d_name_error:false,cr77d_firstname_error:false,cr77d_lastname_error:false,cr77d_address_error:false,cr77d_pincode_error:false,cr77d_phonenumber_error:false})
-    // const [formTwoData, setFormTwoData] = useState<any>({cr77d_assetname:"",cr77d_assetdetails:"",cr77d_assetvalue:"",cr77d_specialrequest:""});
-    // const [formTwoErrorData,setFormTwoErrorData] =useState<any>({cr77d_assetname_error:false,cr77d_assetdetails_error:false,cr77d_assetvalue_error:false,cr77d_specialrequest_error:false})
-    // const [formThreeData, setFormThreeData] = useState<any>({cr77d_personaldetailsverified:false,cr77d_additionaldetailsverified:false,cr77d_assetvalueverified:false});
-    // const [formThreeErrorData,setFormThreeErrorData] =useState<any>({cr77d_personaldetailsverified_error:false,cr77d_additionaldetailsverified_error:false,cr77d_assetvalueverified_error:false});
 
     const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState<{
@@ -91,34 +85,32 @@ const HomePage = () => {
     },[formData])
 
     function validateFormOneData() {
-      const emptyFields = [];
+      const emptyFields: string[] = [];
+      
+      const stepFields: { [key: number]: string[] } = {
+          0: ["cr77d_name", "cr77d_firstname", "cr77d_lastname", "cr77d_address", "cr77d_pincode", "cr77d_phonenumber"],
+          1: ["cr77d_assetname", "cr77d_assetdetails", "cr77d_lastname", "cr77d_assetvalue", "cr77d_specialrequest"]
+      };
   
-      for (const [key, value] of Object.entries(formData)) {
-      if(activeStep===0 && (key==="cr77d_name" || key==="cr77d_firstname" || key==="cr77d_lastname" || key==="cr77d_address" || key==="cr77d_pincode" || key==="cr77d_phonenumber" )){
-        if(
-          value === null ||
-          value === undefined ||
-          (typeof value === 'string' && value.trim() === '') ||
-          (Array.isArray(value) && value.length === 0) ||
-          (typeof value === 'object' && Object.keys(value).length === 0)
-      ) {
-          emptyFields.push(key);
-      }
-      }else if(activeStep===1 && (key==="cr77d_assetname" || key==="cr77d_assetdetails" || key==="cr77d_lastname" || key==="cr77d_assetvalue" || key==="cr77d_specialrequest" )){
-        if(
-          value === null ||
-          value === undefined ||
-          (typeof value === 'string' && value.trim() === '') ||
-          (Array.isArray(value) && value.length === 0) ||
-          (typeof value === 'object' && Object.keys(value).length === 0)
-      ) {
-          emptyFields.push(key);
-      }
-      }
+      const fieldsToCheck = stepFields[activeStep] || [];
+  
+      for (const key of fieldsToCheck) {
+          const value = formData[key];
+          if (
+              value === null ||
+              value === undefined ||
+              (typeof value === 'string' && value.trim() === '') ||
+              (Array.isArray(value) && value.length === 0) ||
+              (typeof value === 'object' && Object.keys(value).length === 0)
+          ) {
+              emptyFields.push(key);
+          }
       }
   
       return emptyFields;
   }
+  
+  
 
   const handleNextClick = async () => {
     const errorFields = validateFormOneData(); // Pass formOneData to validateFormOneData function
@@ -170,7 +162,7 @@ const HomePage = () => {
               const recordIdReceived = response.headers['odata-entityid'].split('(')[1].split(')')[0];
               setRecordId(recordIdReceived)
               }
-                const data = response.data; // response.data is already parsed
+                const data = response.data;
                 if (response.status === 204) {
                     alert("Saved successfully");
                     handleComplete();
