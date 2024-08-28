@@ -1,8 +1,6 @@
-import React from 'react'
 import LoginPage from './components/LoginPage/LoginPage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from './components/HomePage/HomePage'
-import HorizontalNonLinearStepper from './components/Stepper/StepperTest'
 import HorizontalNonLinearStepperTest from './components/Stepper/StepperTest'
 
 const App = () => {

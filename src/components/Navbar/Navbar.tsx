@@ -1,23 +1,4 @@
-// import React from 'react'
-import { FormOutlined,UserOutlined } from '@ant-design/icons'
-// import { Avatar } from 'antd';
-
-// const Navbar = () => {
-//   return (
-//     <>
-//         <nav className=' bg-slate-100 h-16 flex items-center p-5 font-poppins font-semibold justify-between fixed top-0 left-0 right-0 z-50' >
-//             <div className=' flex gap-3 items-center'>
-//                 <p className={` text-black`}>Fill in your form </p>
-//                 <FormOutlined style={{color:"#00008B"}} />
-//             </div>
-//             <Avatar style={{ backgroundColor: '#00008B', width:"25px" , height:"25px", fontSize:"12px" }} icon={<UserOutlined />} />
-//         </nav>
-//     </>
-//   )
-// }
-
-// export default Navbar
-
+import { FormOutlined } from '@ant-design/icons'
 import { useContext } from 'react'
 import styles from './Navbar.module.css' 
 import { Avatar, Dropdown } from 'antd';

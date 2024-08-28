@@ -1,14 +1,14 @@
 import TextField from '@mui/material/TextField';
 
-const FormOne = ({handleInputChange,formOneErrorData,formOneData}:{handleInputChange:any,formOneErrorData:any,formOneData:any}) => {
+const FormOne = ({handleInputChange,formErrorData,formData}:{handleInputChange:any,formErrorData:any,formData:any}) => {
   return (
     <>
       <div className=" md:px-[229px] mt-40 mb-[10vh] ">
       <TextField
         name="name"
         onChange={(e) => handleInputChange(e)}
-        error={formOneErrorData.cr77d_name_error}
-        value={formOneData.cr77d_name}
+        error={formErrorData.cr77d_name_error}
+        value={formData.cr77d_name}
         id="fullname"
         label="Full name"
         variant="outlined"
@@ -32,8 +32,8 @@ const FormOne = ({handleInputChange,formOneErrorData,formOneData}:{handleInputCh
 <TextField
 name="firstname"
 onChange={(e) => handleInputChange(e)}
-error={formOneErrorData.cr77d_firstname_error}
-value={formOneData.cr77d_firstname}
+error={formErrorData.cr77d_firstname_error}
+value={formData.cr77d_firstname}
   id="firstname"
   label="First name"
   variant="outlined"
@@ -57,8 +57,8 @@ value={formOneData.cr77d_firstname}
 <TextField
 name="lastname"
 onChange={(e) => handleInputChange(e)}
-value={formOneData.cr77d_lastname}
-error={formOneErrorData.cr77d_lastname_error}
+value={formData.cr77d_lastname}
+error={formErrorData.cr77d_lastname_error}
   id="lastname"
   label="Last name"
   variant="outlined"
@@ -82,8 +82,8 @@ error={formOneErrorData.cr77d_lastname_error}
 <TextField
   name="address"
   onChange={(e) => handleInputChange(e)}
-  value={formOneData.cr77d_address}
-  error={formOneErrorData.cr77d_address_error}
+  value={formData.cr77d_address}
+  error={formErrorData.cr77d_address_error}
   multiline
   id="address"
   label="Address"
@@ -107,9 +107,9 @@ error={formOneErrorData.cr77d_lastname_error}
 />
 <TextField
 name="pincode"
-value={formOneData.cr77d_pincode}
+value={formData.cr77d_pincode}
 onChange={(e) => handleInputChange(e)}
-error={formOneErrorData.cr77d_pincode_error}
+error={formErrorData.cr77d_pincode_error}
   id="pincode"
   type="number"
   label="Pincode"
@@ -133,9 +133,9 @@ error={formOneErrorData.cr77d_pincode_error}
 />
 <TextField
   name="phonenumber"
-  value={formOneData.cr77d_phonenumber}
+  value={formData.cr77d_phonenumber}
   onChange={(e) => handleInputChange(e)}
-  error={formOneErrorData.cr77d_phonenumber_error}
+  error={formErrorData.cr77d_phonenumber_error}
   id="phonenumber"
   type="number"
   label="Phone Number"

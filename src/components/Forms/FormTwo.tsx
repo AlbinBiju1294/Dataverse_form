@@ -5,7 +5,7 @@ import axios from 'axios';
 import TokenContext from '../../Contexts/TokenContextProvider';
 import { json } from 'react-router-dom';
 
-const FormTwo = ({handleInputChange, handleFileChange, formTwoErrorData, formTwoData}: {handleInputChange: any, handleFileChange: any, formTwoErrorData: any, formTwoData: any}) => {
+const FormTwo = ({handleInputChange, handleFileChange, formErrorData, formData}: {handleInputChange: any, handleFileChange: any, formErrorData: any, formData: any}) => {
 
     const {token} = useContext(TokenContext)
 
@@ -84,8 +84,8 @@ const FormTwo = ({handleInputChange, handleFileChange, formTwoErrorData, formTwo
         <TextField
           name="assetname"
           onChange={(e) => handleInputChange(e)}
-          error={formTwoErrorData.cr77d_assetname_error}
-          value={formTwoData.cr77d_assetname}
+          error={formErrorData.cr77d_assetname_error}
+          value={formData.cr77d_assetname}
           id="assetname"
           label="Asset name"
           variant="outlined"
@@ -109,8 +109,8 @@ const FormTwo = ({handleInputChange, handleFileChange, formTwoErrorData, formTwo
         <TextField
           name="assetdetails"
           onChange={(e) => handleInputChange(e)}
-          error={formTwoErrorData.cr77d_assetdetails_error}
-          value={formTwoData.cr77d_assetdetails}
+          error={formErrorData.cr77d_assetdetails_error}
+          value={formData.cr77d_assetdetails}
           id="assetdetails"
           label="Asset details"
           variant="outlined"
@@ -134,8 +134,8 @@ const FormTwo = ({handleInputChange, handleFileChange, formTwoErrorData, formTwo
         <TextField
           name="assetvalue"
           onChange={(e) => handleInputChange(e)}
-          value={formTwoData.cr77d_assetvalue}
-          error={formTwoErrorData.cr77d_assetvalue_error}
+          value={formData.cr77d_assetvalue}
+          error={formErrorData.cr77d_assetvalue_error}
           id="assetvalue"
           label="Asset value"
           variant="outlined"
@@ -160,8 +160,8 @@ const FormTwo = ({handleInputChange, handleFileChange, formTwoErrorData, formTwo
         <TextField
           name="specialrequest"
           onChange={(e) => handleInputChange(e)}
-          value={formTwoData.cr77d_specialrequest}
-          error={formTwoErrorData.cr77d_specialrequest_error}
+          value={formData.cr77d_specialrequest}
+          error={formErrorData.cr77d_specialrequest_error}
           multiline
           id="specialrequest"
           label="Special request"
