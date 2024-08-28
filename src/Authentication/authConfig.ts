@@ -14,8 +14,8 @@ import { LogLevel } from "@azure/msal-browser";
 export const msalConfig = {
   auth: {
     // clientId: process.env.REACT_APP_CLIENT_ID,
-    clientId: "934ea8cb-9601-405f-8b37-9be64f9e7fbd",
-    authority: "https://login.microsoftonline.com/5b751804-232f-410d-bb2f-714e3bb466eb",
+    clientId: import.meta.env.VITE_CLIENT_ID,
+    authority: `https://login.microsoftonline.com/${import.meta.env.VITE_TENANT_ID}`,
     redirectUri: "http://localhost:5173",
   },
   cache: {
@@ -56,7 +56,7 @@ export const msalConfig = {
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-  scopes: ["https://test.crm8.dynamics.com/.default"],
+  scopes: ["https://orgd0c17eab.crm8.dynamics.com/.default"],
 };
 
 
