@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import axios from 'axios';
 import TokenContext from '../../Contexts/TokenContextProvider';
-import { json } from 'react-router-dom';
 
-const FormTwo = ({handleInputChange, handleFileChange, formErrorData, formData}: {handleInputChange: any, handleFileChange: any, formErrorData: any, formData: any}) => {
+const FormTwo = ({handleInputChange, formErrorData, formData}: {handleInputChange: any, handleFileChange: any, formErrorData: any, formData: any}) => {
 
     const {token} = useContext(TokenContext)
 
