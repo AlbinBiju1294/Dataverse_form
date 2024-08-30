@@ -14,7 +14,6 @@ const Footer = ({handleNextClick,activeStep,handleBack}:{handleNextClick:any,act
         {activeStep !== 2?<Button variant="outlined" size="small" endIcon={<ArrowForwardIcon />} onClick={() => handleNextClick()}>
           Next
         </Button>:<Button variant="contained" size="small" endIcon={<ArrowForwardIcon />} onClick={() => {handleNextClick();
-          navigate('/')
         }}>
           Finish
         </Button>}
