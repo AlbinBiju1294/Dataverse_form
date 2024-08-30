@@ -252,6 +252,7 @@ const HomePage = () => {
 
   return (
     <>
+    
       {contextHolder}
       <Navbar />
       {activeStep!==3 &&<HorizontalNonLinearStepper
@@ -261,6 +262,7 @@ const HomePage = () => {
         setCompleted={setCompleted}
         steps={steps}
       />}
+      <div className=" bg-[#f4f6f8]">
       {activeStep === 0 ? (
         <FormOne
           handleInputChange={handleInputChange}
@@ -288,6 +290,7 @@ const HomePage = () => {
         setCompleted={setCompleted}
         handleBack={handleBack}
       />}
+      </div>
     </>
   );
 };

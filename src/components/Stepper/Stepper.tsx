@@ -11,7 +11,7 @@ export default function HorizontalNonLinearStepper({activeStep,setActiveStep,com
   };
 
   return (
-    <div className=' fixed bg-white top-16 h-20 flex items-center w-[100%] z-[999]' >
+    <div className=' fixed top-16 h-20 flex items-center w-[100%] z-[999]' >
       <Box sx={{ width: '65%', margin: 'auto' }}>
       <Stepper nonLinear activeStep={activeStep}>
         {steps.map((label, index) => (
