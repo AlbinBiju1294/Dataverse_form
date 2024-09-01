@@ -10,9 +10,9 @@ import FormThree from "../Forms/FormThree";
 import UserContext from "../../Contexts/UserContextProvider";
 import { message } from "antd";
 import Summary from "../Summary/Summary";
+import dayjs from "dayjs";
 
 const HomePage = () => {
-
   //contexts
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
@@ -33,6 +33,7 @@ const HomePage = () => {
     cr77d_personaldetailsverified: false,
     cr77d_additionaldetailsverified: false,
     cr77d_assetvalueverified: false,
+    cr77d_dob: null,
   });
 
   const [formErrorData, setFormErrorData] = useState<FormErrorDataType>({
@@ -136,7 +137,6 @@ const HomePage = () => {
         "cr77d_specialrequest",
       ],
     };
-    
 
     const fieldsToCheck = stepFields[activeStep] || [];
 
@@ -235,6 +235,19 @@ const HomePage = () => {
     });
   };
 
+  const handleDateChange = (name: string, date: any) => {
+    const formattedDate = dayjs(date).format("YYYY-MM-DD");
+    setFormData({
+      ...formData,
+      ["cr77d_" + name]: formattedDate,
+    });
+    setFormErrorData((prev: any) => {
+      const updatedErrorData = { ...prev }; // Clone the previous state
+      updatedErrorData[`cr77d_${name}_error`] = false; // Dynamically update the error key
+      return updatedErrorData;
+    });
+  };
+
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log("called");
     const { name, checked } = event.target;
@@ -254,40 +267,51 @@ const HomePage = () => {
     <>
       {contextHolder}
       <Navbar />
-      {activeStep!==3 &&<HorizontalNonLinearStepper
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        completed={completed}
-        setCompleted={setCompleted}
-        steps={steps}
-      />}
-      {activeStep === 0 ? (
-        <FormOne
-          handleInputChange={handleInputChange}
-          formErrorData={formErrorData}
-          formData={formData}
+      {activeStep !== 3 && (
+        <HorizontalNonLinearStepper
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+          completed={completed}
+          setCompleted={setCompleted}
+          steps={steps}
         />
-      ) : activeStep === 1 ? (
-        <FormTwo
-          handleFileChange={() => {}}
-          handleInputChange={handleInputChange}
-          formErrorData={formErrorData}
-          formData={formData}
-        />
-      ) :activeStep ===2? (
-        <FormThree
-          handleCheckboxChange={handleCheckboxChange}
-          formData={formData}
-        />
-      ):(<Summary formData={formData} setActiveStep={setActiveStep}/>)}
-      {activeStep!==3 && <Footer
-        handleNextClick={handleNextClick}
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        completed={completed}
-        setCompleted={setCompleted}
-        handleBack={handleBack}
-      />}
+      )}
+      <div className=" w-[100%] flex flex-col items-center">
+        {activeStep === 0 ? (
+          <FormOne
+            handleDateChange={handleDateChange}
+            handleInputChange={handleInputChange}
+            formErrorData={formErrorData}
+            formData={formData}
+          />
+        ) : activeStep === 1 ? (
+          <FormTwo
+            handleFileChange={() => {}}
+            handleInputChange={handleInputChange}
+            formErrorData={formErrorData}
+            formData={formData}
+          />
+        ) : activeStep === 2 ? (
+          <FormThree
+            handleCheckboxChange={handleCheckboxChange}
+            formData={formData}
+            handleInputChange={handleInputChange}
+            formErrorData={formErrorData}
+          />
+        ) : (
+          <Summary formData={formData} setActiveStep={setActiveStep} />
+        )}
+        {activeStep !== 3 && (
+          <Footer
+            handleNextClick={handleNextClick}
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
+            completed={completed}
+            setCompleted={setCompleted}
+            handleBack={handleBack}
+          />
+        )}
+      </div>
     </>
   );
 };

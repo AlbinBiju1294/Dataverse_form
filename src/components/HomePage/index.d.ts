@@ -13,6 +13,7 @@ interface FormDataType {
     cr77d_personaldetailsverified: boolean;
     cr77d_additionaldetailsverified: boolean;
     cr77d_assetvalueverified: boolean;
+    cr77d_dob:string | null;
   }
 
   interface FormErrorDataType {
