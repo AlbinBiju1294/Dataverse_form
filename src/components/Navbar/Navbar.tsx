@@ -33,10 +33,10 @@ const Navbar = () => {
     },
   ]
   return (
-    <nav className={styles.nav}>
+    <nav className={` text-white ${styles.nav}`}>
     <div className=' flex gap-3 items-center'>
-               <p className={` text-black font-poppins font-semibold text-sm`}>Fill in your form </p>
-             <FormOutlined style={{color:"#00008B"}} />
+               <p className={` font-poppins font-semibold text-sm`}>Fill in your form </p>
+             <FormOutlined style={{color:"#FFFFFF"}} />
     </div>
     {user?<div className={styles.navbar_right}>
         {avatarIcon}

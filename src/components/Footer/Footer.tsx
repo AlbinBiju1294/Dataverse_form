@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 const Footer = ({handleNextClick,activeStep,handleBack}:{handleNextClick:any,activeStep:any,setActiveStep:any,completed:any,setCompleted:any,handleBack:any}) => {
   const navigate = useNavigate()
   return (
-    <footer className=" fixed flex justify-center items-center w-[100%] h-[10vh] bg-white z-[998] bottom-0">
-      <div className=" border-t border-[#1976d2] w-[65%] h-[100%] flex items-center justify-between">
+    <footer className="  flex justify-center items-center w-[100%] h-[10vh] z-[998] mt-5 mb-5">
+      <div className=" shadow-md rounded-md border-t border-[#1976d2] w-[80%] bg-white h-[100%] flex items-center justify-between px-5">
         <Button onClick={handleBack} disabled={activeStep===0?true:false} variant="outlined" size="small" startIcon={<ArrowBackIcon />}>
           Previous
         </Button>
