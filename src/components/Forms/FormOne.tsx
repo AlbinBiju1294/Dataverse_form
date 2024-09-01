@@ -1,12 +1,9 @@
 import TextField from "@mui/material/TextField";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import { FormControl } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import dayjs, { Dayjs } from "dayjs";
-import { useState } from "react";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
@@ -21,9 +18,7 @@ const FormOne = ({
   formData: any;
   handleDateChange: any;
 }) => {
-  const [value, setValue] = useState<Dayjs | null | undefined>(
-    dayjs("2022-04-17")
-  );
+  
   return (
     <>
       <div className=" bg-white w-[80%] px-5 py-8 relative flex flex-col gap-y-[3vh] rounded-md shadow-md">
@@ -132,31 +127,6 @@ const FormOne = ({
               },
             }}
           />
-          {/* <TextField
-            name="gender"
-            onChange={(e) => handleInputChange(e)}
-            value={formData.cr77d_gender}
-            error={formErrorData.cr77d_gender_error}
-            id="gender"
-            label="Gender"
-            variant="outlined"
-            sx={{
-              width: "49%",
-              
-              "& .MuiInputBase-root": {
-                height: "40px",
-                fontSize: "14px",
-              },
-              "& .MuiInputLabel-root": {
-                fontSize: "14px",
-                lineHeight: "40px", // Ensure the label's line height matches the input's height
-                transform: "translate(12px, 0px) scale(1)", // Center the label text
-              },
-              "& .MuiInputLabel-shrink": {
-                transform: "translate(14px, -15px) scale(0.75)", // Adjust the position when the label shrinks
-              },
-            }}
-          /> */}
           <FormControl
             sx={{
               width: "49%",

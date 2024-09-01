@@ -295,6 +295,8 @@ const HomePage = () => {
           <FormThree
             handleCheckboxChange={handleCheckboxChange}
             formData={formData}
+            handleInputChange={handleInputChange}
+            formErrorData={formErrorData}
           />
         ) : (
           <Summary formData={formData} setActiveStep={setActiveStep} />
