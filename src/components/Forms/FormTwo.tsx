@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { ChangeEvent, useState } from "react";
 
@@ -12,11 +13,13 @@ const FormTwo = ({
   formData: any;
 }) => {
   const [file, setFile] = useState<File | null>(null);
+  const [fileName, setFileName] = useState<string>()
   const [fileUrl, setFileUrl] = useState<string | null>(null);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedFile = e.target.files[0];
+      setFileName(selectedFile.name)
       setFile(selectedFile);
       setFileUrl(URL.createObjectURL(selectedFile));
     }
@@ -128,13 +131,41 @@ const FormTwo = ({
             },
           }}
         />
-        {/* {fileUrl && (
-            <div className="mt-0">
+        <div className='flex items-center justify-between gap-4'>
+  <TextField
+    name="assetfileName"
+    id="assetfileName"
+    disabled
+    label="Upload Asset picture"
+    value={fileName} // Assuming "fileName" is a state variable holding the selected file name
+    variant="outlined"
+    InputLabelProps={{
+      shrink: fileName?true:false, // This forces the label to shrink when there is a value
+    }}
+    sx={{
+      width: "82%",
+      '& .MuiInputBase-root': {
+        height: '40px',
+        fontSize: '14px',
+      },
+      '& .MuiInputLabel-root': {
+        fontSize: '14px',
+        lineHeight: '40px',
+        transform: 'translate(12px, 0px) scale(1)',
+      },
+      '& .MuiInputLabel-shrink': {
+        transform: 'translate(14px, -15px) scale(0.75)',
+      },
+    }}
+  />
+
+  {fileUrl && (
+            <div>
               {file && file.type.startsWith("image/") && (
                 <img
                   src={fileUrl}
                   alt="Uploaded file"
-                  className=" max-h-60 max-w-[85%]"
+                  className=" w-[40px] h-[40px] rounded-full"
                 />
               )}
               {file && file.type === "application/pdf" && (
@@ -145,12 +176,20 @@ const FormTwo = ({
                 ></iframe>
               )}
             </div>
-          )} */}
-        <input
-                type="file"
-                onChange={handleFileChange}
-                className=" text-sm"
-        />
+          )}
+
+  {/* File Input with Button */}
+  <Button variant="contained" component="label" sx={{ height: "40px", width: "17%" }}>
+    Upload File
+    <input
+      type="file"
+      hidden
+      name="assetfile"
+      onChange={handleFileChange}
+    />
+  </Button>
+</div>
+
       </div>
     </>
   );
