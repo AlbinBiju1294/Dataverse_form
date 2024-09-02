@@ -16,7 +16,7 @@ const Footer = ({
 }) => {
   return (
     <footer className="  flex justify-center items-center w-[100%] h-[10vh] z-[998] mt-5 mb-5">
-      <div className=" shadow-md rounded-md border-t border-[#1976d2] w-[80%] bg-white h-[100%] flex items-center justify-between px-5">
+      <div className=" shadow-md rounded-md border-t border-[#1976d2] md:w-[80%] w-[90%] bg-white h-[100%] flex items-center justify-between px-5">
         <Button
           onClick={handleBack}
           disabled={activeStep === 0 ? true : false}
@@ -37,8 +37,9 @@ const Footer = ({
           </Button>
         ) : (
           <Button
-            variant="contained"
+            variant="outlined"
             size="small"
+            color="success"
             endIcon={<ArrowForwardIcon />}
             onClick={() => {
               handleNextClick();

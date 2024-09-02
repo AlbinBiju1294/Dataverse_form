@@ -14,6 +14,9 @@ interface FormDataType {
     cr77d_additionaldetailsverified: boolean;
     cr77d_assetvalueverified: boolean;
     cr77d_dob:string | null;
+    cr77d_age:number | null;
+    cr77d_gender:string | null;
+    cr77d_email:string | null;
   }
 
   interface FormErrorDataType {
@@ -31,5 +34,9 @@ interface FormDataType {
     cr77d_personaldetailsverified_error: boolean;
     cr77d_additionaldetailsverified_error: boolean;
     cr77d_assetvalueverified_error: boolean;
+    cr77d_dob_error:boolean;
+    cr77d_age_error:boolean;
+    cr77d_gender_error:boolean;
+    cr77d_email_error:boolean;
   }
   

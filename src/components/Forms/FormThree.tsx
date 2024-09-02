@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 
 const FormThree = ({ handleCheckboxChange,handleInputChange, formData,formErrorData }:{ handleCheckboxChange:any,handleInputChange:any, formData:any,formErrorData:any }) => {
   return (
-    <div className=" bg-white w-[80%] px-5 py-8 relative flex flex-col gap-y-[3vh] rounded-md shadow-md">
+    <div className=" bg-white md:w-[80%] w-[90%] px-5 py-8 relative flex flex-col gap-y-[3vh] rounded-md shadow-md">
         <div className=" absolute top-0 left-0 right-0 h-1 rounded-t-md bg-[#247cd6]"></div>  
         <TextField
           name="comments"

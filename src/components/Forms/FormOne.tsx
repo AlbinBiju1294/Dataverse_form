@@ -21,7 +21,7 @@ const FormOne = ({
   
   return (
     <>
-      <div className=" bg-white w-[80%] px-5 py-8 relative flex flex-col gap-y-[3vh] rounded-md shadow-md">
+      <div className=" bg-white md:w-[80%] w-[90%] px-5 py-8 relative flex flex-col gap-y-[3vh] rounded-md shadow-md">
         <div className=" absolute top-0 left-0 right-0 h-1 rounded-t-md bg-[#247cd6]"></div>
         <TextField
           name="name"
@@ -144,12 +144,13 @@ const FormOne = ({
               },
             }}
           >
-            <InputLabel id="gender_label">Gender</InputLabel>
+            <InputLabel id="gender_label" error={formErrorData.cr77d_gender_error}>Gender</InputLabel>
             <Select
               labelId="gender_label"
               id="gender"
               name="gender"
               label="Gender"
+              error={formErrorData.cr77d_gender_error}
               onChange={handleInputChange}
               MenuProps={{
                 PaperProps: {
@@ -252,6 +253,7 @@ const FormOne = ({
         </div>
         <div className=" w-[100%] flex justify-between">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
+            
               <DatePicker
               name="dob"
               onChange={(dobvalue) => handleDateChange("dob",dobvalue)}

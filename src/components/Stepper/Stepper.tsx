@@ -20,8 +20,9 @@ export default function HorizontalNonLinearStepper({
   };
 
   return (
-    <div className=" bg-[#f3f3f3] py-10 mt-16 flex items-center w-[100%] z-[999]">
-      <Box sx={{ width: "80%", margin: "auto" }}>
+    <div className=" bg-[#f3f3f3] py-10 mt-16 flex justify-center items-center w-[100%] z-[999]">
+      <div className=" md:w-[80%] w-[90%]">
+      <Box sx={{ width: "100%", margin: "auto" }}>
         <Stepper nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label} completed={completed[index]}>
@@ -32,6 +33,7 @@ export default function HorizontalNonLinearStepper({
           ))}
         </Stepper>
       </Box>
+      </div>
     </div>
   );
 }

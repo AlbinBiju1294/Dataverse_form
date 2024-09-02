@@ -34,6 +34,9 @@ const HomePage = () => {
     cr77d_additionaldetailsverified: false,
     cr77d_assetvalueverified: false,
     cr77d_dob: null,
+    cr77d_age:null,
+    cr77d_gender:null,
+    cr77d_email:null,
   });
 
   const [formErrorData, setFormErrorData] = useState<FormErrorDataType>({
@@ -51,6 +54,10 @@ const HomePage = () => {
     cr77d_personaldetailsverified_error: false,
     cr77d_additionaldetailsverified_error: false,
     cr77d_assetvalueverified_error: false,
+    cr77d_dob_error:false,
+    cr77d_age_error:false,
+    cr77d_gender_error:false,
+    cr77d_email_error:false
   });
 
   const [activeStep, setActiveStep] = React.useState<number>(0);
@@ -129,6 +136,10 @@ const HomePage = () => {
         "cr77d_address",
         "cr77d_pincode",
         "cr77d_phonenumber",
+        "cr77d_age",
+        "cr77d_gender",
+        "cr77d_dob",
+        "cr77d_email"
       ],
       1: [
         "cr77d_assetname",
@@ -204,6 +215,7 @@ const HomePage = () => {
           const recordIdReceived = response.headers["odata-entityid"]
             .split("(")[1]
             .split(")")[0];
+            console.log("recordIdReceived",recordIdReceived);
           setRecordId(recordIdReceived);
         }
         const data = response.data;

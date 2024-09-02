@@ -1,4 +1,5 @@
 import TextField from "@mui/material/TextField";
+import { ChangeEvent, useState } from "react";
 
 const FormTwo = ({
   handleInputChange,
@@ -10,9 +11,20 @@ const FormTwo = ({
   formErrorData: any;
   formData: any;
 }) => {
+  const [file, setFile] = useState<File | null>(null);
+  const [fileUrl, setFileUrl] = useState<string | null>(null);
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const selectedFile = e.target.files[0];
+      setFile(selectedFile);
+      setFileUrl(URL.createObjectURL(selectedFile));
+    }
+  };
+
   return (
     <>
-      <div className=" bg-white w-[80%] px-5 py-8 relative flex flex-col gap-y-[3vh] rounded-md shadow-md">
+      <div className=" bg-white md:w-[80%] w-[90%] px-5 py-8 relative flex flex-col gap-y-[3vh] rounded-md shadow-md">
         <div className=" absolute top-0 left-0 right-0 h-1 rounded-t-md bg-[#247cd6]"></div>
         <TextField
           name="assetname"
@@ -115,6 +127,29 @@ const FormTwo = ({
               transform: "translate(14px, -15px) scale(0.75)",
             },
           }}
+        />
+        {/* {fileUrl && (
+            <div className="mt-0">
+              {file && file.type.startsWith("image/") && (
+                <img
+                  src={fileUrl}
+                  alt="Uploaded file"
+                  className=" max-h-60 max-w-[85%]"
+                />
+              )}
+              {file && file.type === "application/pdf" && (
+                <iframe
+                  src={fileUrl}
+                  className="h-60 w-[85%]"
+                  title="PDF Preview"
+                ></iframe>
+              )}
+            </div>
+          )} */}
+        <input
+                type="file"
+                onChange={handleFileChange}
+                className=" text-sm"
         />
       </div>
     </>
