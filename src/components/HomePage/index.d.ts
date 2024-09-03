@@ -1,5 +1,5 @@
 interface FormDataType {
-    cr77d_id: string | null;
+    cr77d_usermailid: string | null;
     cr77d_name: string | null;
     cr77d_firstname: string | null;
     cr77d_lastname: string | null;

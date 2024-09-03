@@ -11,6 +11,7 @@ import UserContext from "../../Contexts/UserContextProvider";
 import { message } from "antd";
 import Summary from "../Summary/Summary";
 import dayjs from "dayjs";
+import {v4 as uuidv4} from 'uuid';
 
 const HomePage = () => {
   //contexts
@@ -19,7 +20,7 @@ const HomePage = () => {
   const [messageApi, contextHolder] = message.useMessage();
 
   const [formData, setFormData] = useState<FormDataType>({
-    cr77d_id: user?.usermail || null,
+    cr77d_usermailid: user?.usermail || null,
     cr77d_name: null,
     cr77d_firstname: null,
     cr77d_lastname: null,
@@ -298,9 +299,10 @@ const HomePage = () => {
             }
           );
         } else {
+          const unique_id = uuidv4();
           response = await axios.post(
             "https://orgd0c17eab.api.crm8.dynamics.com/api/data/v9.2/cr77d_newtables",
-            formData, // formOneData is the payload
+            {...formData,cr77d_id:unique_id}, // formOneData is the payload
             {
               headers: {
                 Authorization: `Bearer ${token}`,
