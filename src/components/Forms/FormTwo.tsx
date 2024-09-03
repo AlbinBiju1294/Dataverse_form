@@ -199,7 +199,7 @@ const FormTwo = ({
             name="assetfileName"
             id="assetfileName"
             disabled
-            label="Upload Asset picture"
+            label="Upload Asset file"
             value={file.assetphotoname} // Assuming "fileName" is a state variable holding the selected file name
             variant="outlined"
             InputLabelProps={{

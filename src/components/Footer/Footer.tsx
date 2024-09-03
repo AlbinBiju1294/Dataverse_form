@@ -5,8 +5,6 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 const Footer = ({
   handleNextClick,
   activeStep,
-  handleBack,
-  isCompletelyFilled
 }: {
   handleNextClick: any;
   activeStep: any;
@@ -39,9 +37,8 @@ const Footer = ({
           </Button>
         ) : (
           <Button
-            variant="outlined"
+            variant="contained"
             size="small"
-            color="success"
             endIcon={<ArrowForwardIcon />}
             onClick={() => {
               handleNextClick("next");
