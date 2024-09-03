@@ -17,6 +17,9 @@ interface FormDataType {
     cr77d_age:number | null;
     cr77d_gender:string | null;
     cr77d_email:string | null;
+    cr77d_assetlocation: string | null;
+    cr77d_assetowner: string | null;
+    cr77d_comments: string | null;
   }
 
   interface FormErrorDataType {
@@ -38,5 +41,14 @@ interface FormDataType {
     cr77d_age_error:boolean;
     cr77d_gender_error:boolean;
     cr77d_email_error:boolean;
+    cr77d_assetowner_error:boolean;
+    cr77d_assetlocation_error:boolean;
+    cr77d_comments_error:boolean;
+  }
+
+  interface AssetFileType{
+    assetphotofile:null | File;
+    assetphotoname:null | string;
+    assetphotourl:null | string;
   }
   

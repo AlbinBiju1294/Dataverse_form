@@ -85,10 +85,10 @@ const Summary = ({
       />
       <div className="w-[75vw] mt-12 flex justify-end">
         <button
-          className=" border bg-[#1565c0] text-sm text-white mr-5 w-20 h-9 rounded-md"
+          className=" border bg-[#1565c0] text-sm text-white mr-5 w-16 h-9 rounded-md"
           onClick={() => setActiveStep(0)}
         >
-          Fill again
+          Edit
         </button>
         <button
           className="border bg-[#c62828] text-sm text-white w-16 h-9 rounded-md"

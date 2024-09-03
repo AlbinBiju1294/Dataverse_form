@@ -1,31 +1,33 @@
+import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { ChangeEvent, useState } from "react";
 
 const FormTwo = ({
   handleInputChange,
   formErrorData,
   formData,
+  file,
+  handleFileChange,
 }: {
   handleInputChange: any;
   handleFileChange: any;
   formErrorData: any;
   formData: any;
+  file: AssetFileType;
 }) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [fileUrl, setFileUrl] = useState<string | null>(null);
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const selectedFile = e.target.files[0];
-      setFile(selectedFile);
-      setFileUrl(URL.createObjectURL(selectedFile));
-    }
-  };
+  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files) {
+  //     const selectedFile = e.target.files[0];
+  //     setFileName(selectedFile.name)
+  //     setFile(selectedFile);
+  //     setFileUrl(URL.createObjectURL(selectedFile));
+  //   }
+  // };
 
   return (
     <>
       <div className=" bg-white md:w-[80%] w-[90%] px-5 py-8 relative flex flex-col gap-y-[3vh] rounded-md shadow-md">
         <div className=" absolute top-0 left-0 right-0 h-1 rounded-t-md bg-[#247cd6]"></div>
+        <div className=" w-[100%] flex justify-between">
         <TextField
           name="assetname"
           onChange={(e) => handleInputChange(e)}
@@ -35,7 +37,7 @@ const FormTwo = ({
           label="Asset name"
           variant="outlined"
           sx={{
-            width: "100%",
+            width: "49%",
 
             "& .MuiInputBase-root": {
               height: "40px",
@@ -52,15 +54,15 @@ const FormTwo = ({
           }}
         />
         <TextField
-          name="assetdetails"
+          name="assetlocation"
           onChange={(e) => handleInputChange(e)}
-          error={formErrorData.cr77d_assetdetails_error}
-          value={formData.cr77d_assetdetails}
-          id="assetdetails"
-          label="Asset details"
+          error={formErrorData.cr77d_assetlocation_error}
+          value={formData.cr77d_assetlocation}
+          id="assetlocation"
+          label="Asset Location"
           variant="outlined"
           sx={{
-            width: "100%",
+            width: "49%",
 
             "& .MuiInputBase-root": {
               height: "40px",
@@ -76,6 +78,39 @@ const FormTwo = ({
             },
           }}
         />
+        </div>
+        <TextField
+          name="assetdetails"
+          onChange={(e) => handleInputChange(e)}
+          error={formErrorData.cr77d_assetdetails_error}
+          value={formData.cr77d_assetdetails}
+          id="assetdetails"
+          label="Asset details"
+          multiline
+          variant="outlined"
+          sx={{
+            width: "100%",
+
+            "& .MuiInputBase-root": {
+              minHeight: "80px", // Maintain the desired height of the input container
+              fontSize: "14px",
+              alignItems: "flex-start", // Align text at the top
+            },
+            "& .MuiInputLabel-root": {
+              fontSize: "14px",
+              lineHeight: "80px", // Ensure this matches the container height
+              transform: "translate(12px, 23px) scale(1)", // Adjust translation to center the label vertically
+            },
+            "& .MuiInputLabel-shrink": {
+              transform: "translate(14px, -29px) scale(0.75)", // Adjust the position when the label shrinks
+            },
+            "& .MuiInputBase-inputMultiline": {
+              minHeight: "80px", // Ensure the minimum height matches the container
+              paddingTop: "10px", // Adjust padding to align text properly
+            },
+          }}
+        />
+        <div className=" w-[100%] flex justify-between">
         <TextField
           name="assetvalue"
           onChange={(e) => handleInputChange(e)}
@@ -86,7 +121,7 @@ const FormTwo = ({
           variant="outlined"
           type="number"
           sx={{
-            width: "100%",
+            width: "49%",
 
             "& .MuiInputBase-root": {
               height: "40px",
@@ -102,6 +137,32 @@ const FormTwo = ({
             },
           }}
         />
+        <TextField
+          name="assetowner"
+          onChange={(e) => handleInputChange(e)}
+          error={formErrorData.cr77d_assetowner_error}
+          value={formData.cr77d_assetowner}
+          id="assetowner"
+          label="Asset Owner"
+          variant="outlined"
+          sx={{
+            width: "49%",
+
+            "& .MuiInputBase-root": {
+              height: "40px",
+              fontSize: "14px",
+            },
+            "& .MuiInputLabel-root": {
+              fontSize: "14px",
+              lineHeight: "40px",
+              transform: "translate(12px, 0px) scale(1)",
+            },
+            "& .MuiInputLabel-shrink": {
+              transform: "translate(14px, -15px) scale(0.75)",
+            },
+          }}
+        />
+        </div>
         <TextField
           name="specialrequest"
           onChange={(e) => handleInputChange(e)}
@@ -115,42 +176,86 @@ const FormTwo = ({
             width: "100%",
 
             "& .MuiInputBase-root": {
-              height: "40px",
+              minHeight: "80px", // Maintain the desired height of the input container
               fontSize: "14px",
+              alignItems: "flex-start", // Align text at the top
             },
             "& .MuiInputLabel-root": {
               fontSize: "14px",
-              lineHeight: "40px",
-              transform: "translate(12px, 0px) scale(1)",
+              lineHeight: "80px", // Ensure this matches the container height
+              transform: "translate(12px, 23px) scale(1)", // Adjust translation to center the label vertically
             },
             "& .MuiInputLabel-shrink": {
-              transform: "translate(14px, -15px) scale(0.75)",
+              transform: "translate(14px, -29px) scale(0.75)", // Adjust the position when the label shrinks
+            },
+            "& .MuiInputBase-inputMultiline": {
+              minHeight: "80px", // Ensure the minimum height matches the container
+              paddingTop: "10px", // Adjust padding to align text properly
             },
           }}
         />
-        {/* {fileUrl && (
-            <div className="mt-0">
-              {file && file.type.startsWith("image/") && (
+        <div className="flex items-center justify-between gap-4">
+          <TextField
+            name="assetfileName"
+            id="assetfileName"
+            disabled
+            label="Upload Asset picture"
+            value={file.assetphotoname} // Assuming "fileName" is a state variable holding the selected file name
+            variant="outlined"
+            InputLabelProps={{
+              shrink: file.assetphotoname ? true : false, // This forces the label to shrink when there is a value
+            }}
+            sx={{
+              width: "82%",
+              "& .MuiInputBase-root": {
+                height: "40px",
+                fontSize: "14px",
+              },
+              "& .MuiInputLabel-root": {
+                fontSize: "14px",
+                lineHeight: "40px",
+                transform: "translate(12px, 0px) scale(1)",
+              },
+              "& .MuiInputLabel-shrink": {
+                transform: "translate(14px, -15px) scale(0.75)",
+              },
+            }}
+          />
+
+          {file.assetphotourl && (
+            <div>
+              {file && file.assetphotofile?.type.startsWith("image/") && (
                 <img
-                  src={fileUrl}
+                  src={file.assetphotourl}
                   alt="Uploaded file"
-                  className=" max-h-60 max-w-[85%]"
+                  className=" w-[40px] h-[40px] rounded-full"
                 />
               )}
-              {file && file.type === "application/pdf" && (
+              {file && file.assetphotofile?.type === "application/pdf" && (
                 <iframe
-                  src={fileUrl}
+                  src={file.assetphotourl}
                   className="h-60 w-[85%]"
                   title="PDF Preview"
                 ></iframe>
               )}
             </div>
-          )} */}
-        <input
-                type="file"
-                onChange={handleFileChange}
-                className=" text-sm"
-        />
+          )}
+
+          {/* File Input with Button */}
+          <Button
+            variant="contained"
+            component="label"
+            sx={{ height: "40px", width: "17%" }}
+          >
+            Upload File
+            <input
+              type="file"
+              hidden
+              name="assetfile"
+              onChange={handleFileChange}
+            />
+          </Button>
+        </div>
       </div>
     </>
   );

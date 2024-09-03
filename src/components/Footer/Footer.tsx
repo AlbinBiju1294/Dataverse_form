@@ -6,6 +6,7 @@ const Footer = ({
   handleNextClick,
   activeStep,
   handleBack,
+  isCompletelyFilled
 }: {
   handleNextClick: any;
   activeStep: any;
@@ -13,12 +14,13 @@ const Footer = ({
   completed: any;
   setCompleted: any;
   handleBack: any;
+  isCompletelyFilled:any;
 }) => {
   return (
     <footer className="  flex justify-center items-center w-[100%] h-[10vh] z-[998] mt-5 mb-5">
       <div className=" shadow-md rounded-md border-t border-[#1976d2] md:w-[80%] w-[90%] bg-white h-[100%] flex items-center justify-between px-5">
         <Button
-          onClick={handleBack}
+          onClick={() => handleNextClick("previous")}
           disabled={activeStep === 0 ? true : false}
           variant="outlined"
           size="small"
@@ -31,7 +33,7 @@ const Footer = ({
             variant="outlined"
             size="small"
             endIcon={<ArrowForwardIcon />}
-            onClick={() => handleNextClick()}
+            onClick={() => handleNextClick("next")}
           >
             Next
           </Button>
@@ -42,7 +44,7 @@ const Footer = ({
             color="success"
             endIcon={<ArrowForwardIcon />}
             onClick={() => {
-              handleNextClick();
+              handleNextClick("next");
             }}
           >
             Finish
