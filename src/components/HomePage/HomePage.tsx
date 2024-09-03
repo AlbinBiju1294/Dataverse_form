@@ -212,7 +212,7 @@ const HomePage = () => {
             handleComplete(type);
           }
         }else{
-          messageApi.error("Upload asset photo")
+          messageApi.error("Upload asset file")
         }
       }
       else{

@@ -31,44 +31,86 @@ const Summary = ({
     },
     {
       key: "4",
+      label: "Age",
+      children: formData.cr77d_age,
+      span: 1, // First name takes half the width (1 column)
+    },
+    {
+      key: "5",
+      label: "Gender",
+      children: formData.cr77d_gender,
+      span: 1, // Last name takes the other half (1 column)
+    },
+    {
+      key: "6",
+      label: "Date of Birth",
+      children: formData.cr77d_dob,
+      span: 1, // First name takes half the width (1 column)
+    },
+    {
+      key: "7",
+      label: "Email",
+      children: formData.cr77d_email,
+      span: 1, // Last name takes the other half (1 column)
+    },
+    {
+      key: "8",
       label: "Address",
       children: formData.cr77d_address,
       span: 2,
     },
     {
-      key: "5",
+      key: "9",
       label: "Pincode",
       children: formData.cr77d_pincode,
       span: 1,
     },
     {
-      key: "6",
+      key: "10",
       label: "Phone number",
       children: formData.cr77d_phonenumber,
       span: 1,
     },
     {
-      key: "7",
+      key: "11",
       label: "Asset Name",
       children: formData.cr77d_assetname,
       span: 1,
     },
     {
-      key: "8",
-      label: "Asset Details",
-      children: formData.cr77d_assetdetails,
+      key: "12",
+      label: "Asset Location",
+      children: formData.cr77d_assetlocation,
       span: 1,
     },
     {
-      key: "9",
+      key: "13",
+      label: "Asset Details",
+      children: formData.cr77d_assetdetails,
+      span: 2,
+    },
+    {
+      key: "14",
       label: "Asset Value",
       children: formData.cr77d_assetvalue,
       span: 1,
     },
     {
-      key: "10",
+      key: "15",
+      label: "Asset Owner",
+      children: formData.cr77d_assetowner,
+      span: 1,
+    },
+    {
+      key: "16",
       label: "Special Request",
       children: formData.cr77d_specialrequest,
+      span: 2,
+    },
+    {
+      key: "17",
+      label: "Comments",
+      children: formData.cr77d_comments,
       span: 2,
     },
   ];
