@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import TokenContext from "../../Contexts/TokenContextProvider";
 import Navbar from "../Navbar/Navbar";
 import FormOne from "../Forms/FormOne";
@@ -34,9 +34,12 @@ const HomePage = () => {
     cr77d_additionaldetailsverified: false,
     cr77d_assetvalueverified: false,
     cr77d_dob: null,
-    cr77d_age:null,
-    cr77d_gender:null,
-    cr77d_email:null,
+    cr77d_age: null,
+    cr77d_gender: null,
+    cr77d_email: null,
+    cr77d_assetowner:null,
+    cr77d_assetlocation:null,
+    cr77d_comments:null
   });
 
   const [formErrorData, setFormErrorData] = useState<FormErrorDataType>({
@@ -54,10 +57,19 @@ const HomePage = () => {
     cr77d_personaldetailsverified_error: false,
     cr77d_additionaldetailsverified_error: false,
     cr77d_assetvalueverified_error: false,
-    cr77d_dob_error:false,
-    cr77d_age_error:false,
-    cr77d_gender_error:false,
-    cr77d_email_error:false
+    cr77d_dob_error: false,
+    cr77d_age_error: false,
+    cr77d_gender_error: false,
+    cr77d_email_error: false,
+    cr77d_assetowner_error:false,
+    cr77d_assetlocation_error:false,
+    cr77d_comments_error:false
+  });
+
+  const [file, setFile] = useState<AssetFileType>({
+    assetphotofile: null,
+    assetphotoname: null,
+    assetphotourl: null,
   });
 
   const [activeStep, setActiveStep] = React.useState<number>(0);
@@ -108,12 +120,26 @@ const HomePage = () => {
     }
   };
 
-  const handleComplete = () => {
+  const handleComplete = (type:string) => {
     const newCompleted = { ...completed };
     newCompleted[activeStep] = true;
     setCompleted(newCompleted);
-    handleNext();
+    if(type === "previous"){
+      handleBack()
+    }
+    else if(type === "next"){
+      handleNext();
+    }
   };
+
+  const isCompletelyFilled = () => {
+    if(formData.cr77d_additionaldetailsverified && formData.cr77d_assetvalueverified && formData.cr77d_personaldetailsverified){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 
   // const handleReset = () => {
   //   setActiveStep(0);
@@ -139,14 +165,19 @@ const HomePage = () => {
         "cr77d_age",
         "cr77d_gender",
         "cr77d_dob",
-        "cr77d_email"
+        "cr77d_email",
       ],
       1: [
         "cr77d_assetname",
         "cr77d_assetdetails",
         "cr77d_assetvalue",
         "cr77d_specialrequest",
+        "cr77d_assetlocation",
+        "cr77d_assetowner"
       ],
+      2: [
+        "cr77d_comments"
+      ]
     };
 
     const fieldsToCheck = stepFields[activeStep] || [];
@@ -167,11 +198,32 @@ const HomePage = () => {
     return emptyFields;
   }
 
-  const handleNextClick = async () => {
+  const handleNextClick = async (type:string) => {
     const errorFields = validateFormOneData(); // Pass formOneData to validateFormOneData function
     if (errorFields.length === 0) {
-      const response = await addNewItem(); // Await the asynchronous call to addNewItem
-      console.log(response);
+      if(activeStep === 1){
+        if(file.assetphotofile){
+          const response = await addNewItem(); // Await the asynchronous call to addNewItem
+          console.log("response1",response);
+          const fileUploadResponse = await uploadAssetPhoto();
+          console.log("response2",fileUploadResponse);
+          if (response.status === 204 && fileUploadResponse.status === 204) {
+            messageApi.success("Data and file successfully saved");
+            handleComplete(type);
+          }
+        }else{
+          messageApi.error("Upload asset photo")
+        }
+      }
+      else{
+        const response = await addNewItem(); // Await the asynchronous call to addNewItem
+        console.log("response",response);
+        if (response.status === 204) {
+          messageApi.success("Data successfully saved");
+          handleComplete(type);
+        }
+      }
+      
     } else {
       setFormErrorData((prev: any) => {
         messageApi.error("Fill all the required fields");
@@ -183,6 +235,50 @@ const HomePage = () => {
       });
     }
   };
+
+  const uploadAssetPhoto = async () => {
+    try {
+      let response: any = {};
+      if (token) {
+        if (recordId) {
+          console.log(recordId);
+          console.log("entered with record ID");
+          response = await axios.patch(
+            `https://orgd0c17eab.api.crm8.dynamics.com/api/data/v9.2/cr77d_newtables(${recordId})/cr77d_assetphoto`,
+            file.assetphotofile,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/octet-stream",
+              },
+            }
+          );
+        } else {
+          response = await axios.post(
+            "https://orgd0c17eab.api.crm8.dynamics.com/api/data/v9.2/cr77d_newtables/cr77d_assetphoto",
+            file.assetphotofile, // formOneData is the payload
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/octet-stream",
+              },
+            }
+          );
+          const recordIdReceived = response.headers["odata-entityid"]
+            .split("(")[1]
+            .split(")")[0];
+          console.log("recordIdReceived", recordIdReceived);
+          setRecordId(recordIdReceived);
+        }
+        const data = response.data;
+
+        console.log("API Response", data);
+        return response;
+      }
+    } catch (e) {
+      messageApi.error("Please try again");
+    }
+  }
 
   const addNewItem = async () => {
     try {
@@ -215,17 +311,13 @@ const HomePage = () => {
           const recordIdReceived = response.headers["odata-entityid"]
             .split("(")[1]
             .split(")")[0];
-            console.log("recordIdReceived",recordIdReceived);
+          console.log("recordIdReceived", recordIdReceived);
           setRecordId(recordIdReceived);
         }
         const data = response.data;
-        if (response.status === 204) {
-          messageApi.success("Data successfully saved");
-          handleComplete();
-        }
 
         console.log("API Response", data);
-        return data;
+        return response;
       }
     } catch (e) {
       messageApi.error("Please try again");
@@ -245,6 +337,18 @@ const HomePage = () => {
       updatedErrorData[`cr77d_${name}_error`] = false; // Dynamically update the error key
       return updatedErrorData;
     });
+  };
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const selectedFile = e.target.files[0];
+      setFile({
+        ...file,
+        assetphotofile: selectedFile,
+        assetphotoname: selectedFile.name,
+        assetphotourl: URL.createObjectURL(selectedFile),
+      });
+    }
   };
 
   const handleDateChange = (name: string, date: any) => {
@@ -298,10 +402,11 @@ const HomePage = () => {
           />
         ) : activeStep === 1 ? (
           <FormTwo
-            handleFileChange={() => {}}
+            handleFileChange={handleFileChange}
             handleInputChange={handleInputChange}
             formErrorData={formErrorData}
             formData={formData}
+            file={file}
           />
         ) : activeStep === 2 ? (
           <FormThree
@@ -321,6 +426,7 @@ const HomePage = () => {
             completed={completed}
             setCompleted={setCompleted}
             handleBack={handleBack}
+            isCompletelyFilled={isCompletelyFilled}
           />
         )}
       </div>

@@ -6,6 +6,7 @@ import { FormControl } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from 'dayjs';
 
 const FormOne = ({
   handleInputChange,
@@ -150,6 +151,7 @@ const FormOne = ({
               id="gender"
               name="gender"
               label="Gender"
+              value={formData.cr77d_gender}
               error={formErrorData.cr77d_gender_error}
               onChange={handleInputChange}
               MenuProps={{
@@ -256,8 +258,15 @@ const FormOne = ({
             
               <DatePicker
               name="dob"
+              
+              value={formData.cr77d_dob===null?null:dayjs(formData.cr77d_dob)}
               onChange={(dobvalue) => handleDateChange("dob",dobvalue)}
                 label="Date of Birth"
+                slotProps={{
+                  textField: {
+                    error: formErrorData.cr77d_dob_error,
+                  },
+                }}
                 sx={{
                   width: "49%",
 
