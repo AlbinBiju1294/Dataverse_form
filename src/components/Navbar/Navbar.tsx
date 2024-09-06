@@ -1,7 +1,7 @@
-import { FormOutlined, HomeOutlined } from '@ant-design/icons'
+import { FormOutlined } from '@ant-design/icons'
 import { useContext } from 'react'
 import styles from './Navbar.module.css' 
-import { Avatar, Dropdown } from 'antd';
+import { Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 import { useNavigate } from 'react-router-dom'
 import UserContext from '../../Contexts/UserContextProvider';
@@ -19,9 +19,9 @@ const Navbar = () => {
       navigate("/");
   }
 
-  const avatarIcon = user ? (
-    <Avatar size={'small'} style={{ backgroundColor: 'rgba(1, 41, 112, 0.7)', fontSize:'small' }}>{user.username.split('.').map(name => name[0].toUpperCase()).slice(0, 2).join('')}</Avatar>
-  ) : null;
+  // const avatarIcon = user ? (
+  //   <Avatar size={'small'} style={{ backgroundColor: 'rgba(1, 41, 112, 0.7)', fontSize:'small' }}>{user.username.split('.').map(name => name[0].toUpperCase()).slice(0, 2).join('')}</Avatar>
+  // ) : null;
 
   const items: MenuProps['items'] = [
     {
