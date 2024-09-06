@@ -1,4 +1,4 @@
-import { FormOutlined } from '@ant-design/icons'
+import { FormOutlined, HomeOutlined } from '@ant-design/icons'
 import { useContext } from 'react'
 import styles from './Navbar.module.css' 
 import { Avatar, Dropdown } from 'antd';
@@ -6,6 +6,7 @@ import type { MenuProps } from 'antd';
 import { useNavigate } from 'react-router-dom'
 import UserContext from '../../Contexts/UserContextProvider';
 import { capitalizeFirstLetter } from '../../utils/helpers';
+import Logo from '../../assets/usericon.svg';
 
 const Navbar = () => {
   //for taking user and set user from context
@@ -39,7 +40,11 @@ const Navbar = () => {
              <FormOutlined style={{color:"#FFFFFF"}} />
     </div>
     {user?<div className={styles.navbar_right}>
-        {avatarIcon}
+        {/* {avatarIcon} */}
+        {/* <HomeOutlined className=' m-6' /> */}
+        <img src={Logo} width={22} alt="NO IMAGE" />
+
+
         
         <Dropdown menu={{ items }} placement="bottom" trigger={['click']}>
           <h5 className={styles.navbar_name}>{user ? capitalizeFirstLetter(user.username).replace('.',' ') : null}</h5>
