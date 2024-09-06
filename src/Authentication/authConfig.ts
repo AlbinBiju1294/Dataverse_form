@@ -17,7 +17,7 @@ export const msalConfig = {
     clientId: import.meta.env.VITE_CLIENT_ID,
     authority: `https://login.microsoftonline.com/${import.meta.env.VITE_TENANT_ID}`,
     redirectUri: import.meta.env.MODE === 'production'
-      ? "https://your-production-url.com"
+      ? "https://lemon-river-096580000.5.azurestaticapps.net"
       : "http://localhost:5173",
   },
   cache: {
