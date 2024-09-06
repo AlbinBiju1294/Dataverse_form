@@ -16,7 +16,9 @@ export const msalConfig = {
     // clientId: process.env.REACT_APP_CLIENT_ID,
     clientId: import.meta.env.VITE_CLIENT_ID,
     authority: `https://login.microsoftonline.com/${import.meta.env.VITE_TENANT_ID}`,
-    redirectUri: "http://localhost:5173",
+    redirectUri: import.meta.env.MODE === 'production'
+      ? "https://your-production-url.com"
+      : "http://localhost:5173",
   },
   cache: {
     cacheLocation: "sessionStorage", // This configures where your cache will be stored
