@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const FormTwo = ({
   handleInputChange,
@@ -27,6 +28,10 @@ const FormTwo = ({
     <>
       <div className=" bg-white md:w-[80%] w-[90%] px-5 py-8 relative flex flex-col gap-y-[3vh] rounded-md shadow-md">
         <div className=" absolute top-0 left-0 right-0 h-1 rounded-t-md bg-[#247cd6]"></div>
+        <div className=" flex gap-1.5 items-center">
+          <AddCircleIcon fontSize="small" style={{color:"#247cd6"}}/>
+          <h3 className=" text-md font-normal">Additional Details</h3>
+        </div>
         <div className=" w-[100%] flex justify-between">
         <TextField
           name="assetname"

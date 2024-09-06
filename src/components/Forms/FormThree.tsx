@@ -2,11 +2,16 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import TextField from "@mui/material/TextField";
+import DomainVerificationIcon from '@mui/icons-material/DomainVerification';
 
 const FormThree = ({ handleCheckboxChange,handleInputChange, formData,formErrorData }:{ handleCheckboxChange:any,handleInputChange:any, formData:any,formErrorData:any }) => {
   return (
     <div className=" bg-white md:w-[80%] w-[90%] px-5 py-8 relative flex flex-col gap-y-[3vh] rounded-md shadow-md">
         <div className=" absolute top-0 left-0 right-0 h-1 rounded-t-md bg-[#247cd6]"></div>  
+        <div className=" flex gap-1.5 items-center">
+          <DomainVerificationIcon fontSize="small" style={{color:"#247cd6"}}/>
+          <h3 className=" text-md font-normal">Verification Details</h3>
+        </div>
         <TextField
           name="comments"
           onChange={(e) => handleInputChange(e)}

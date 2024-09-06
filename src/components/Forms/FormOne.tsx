@@ -7,6 +7,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from 'dayjs';
+import PersonIcon from '@mui/icons-material/Person';
 
 const FormOne = ({
   handleInputChange,
@@ -24,6 +25,10 @@ const FormOne = ({
     <>
       <div className=" bg-white md:w-[80%] w-[90%] px-5 py-8 relative flex flex-col gap-y-[3vh] rounded-md shadow-md">
         <div className=" absolute top-0 left-0 right-0 h-1 rounded-t-md bg-[#247cd6]"></div>
+        <div className=" flex gap-1.5 items-center">
+          <PersonIcon fontSize="small" style={{color:"#247cd6"}}/>
+          <h3 className=" text-md font-normal">Personal Details</h3>
+        </div>
         <TextField
           name="name"
           onChange={(e) => handleInputChange(e)}
