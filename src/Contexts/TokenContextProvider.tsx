@@ -1,6 +1,5 @@
 import React, { useState, createContext, ReactNode } from "react";
-import { getStoredToken, isTokenExpired } from "../utils/helpers";
-import useLoginHandler from "../components/LoginPage/LoginHandler";
+import { getStoredToken } from "../utils/helpers";
 
 export type TokenType = {
   token:string
