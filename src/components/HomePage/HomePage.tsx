@@ -73,6 +73,9 @@ const HomePage = () => {
     assetphotourl: null,
   });
 
+  const [isNextButtonLoading,setIsNextButtonLoading] = useState<boolean>(false)
+  const [isPreviousButtonLoading,setIsPreviousButtonLoading] = useState<boolean>(false)
+
   const [activeStep, setActiveStep] = React.useState<number>(0);
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
@@ -200,6 +203,7 @@ const HomePage = () => {
   }
 
   const handleNextClick = async (type:string) => {
+    type==="next"?setIsNextButtonLoading(true):setIsPreviousButtonLoading(true);
     const errorFields = validateFormOneData(); // Pass formOneData to validateFormOneData function
     if (errorFields.length === 0) {
       if(activeStep === 1){
@@ -211,8 +215,10 @@ const HomePage = () => {
           if (response.status === 204 && fileUploadResponse.status === 204) {
             messageApi.success("Data and file successfully saved");
             handleComplete(type);
+            type==="next"?setIsNextButtonLoading(false):setIsPreviousButtonLoading(false);
           }
         }else{
+          type==="next"?setIsNextButtonLoading(false):setIsPreviousButtonLoading(false);
           messageApi.error("Upload asset file")
         }
       }
@@ -220,13 +226,15 @@ const HomePage = () => {
         const response = await addNewItem(); // Await the asynchronous call to addNewItem
         console.log("response",response);
         if (response.status === 204) {
+          type==="next"?setIsNextButtonLoading(false):setIsPreviousButtonLoading(false);
           messageApi.success("Data successfully saved");
           handleComplete(type);
         }
       }
       
     } else {
-      setFormErrorData((prev: any) => {
+        setFormErrorData((prev: any) => {
+        type==="next"?setIsNextButtonLoading(false):setIsPreviousButtonLoading(false);
         messageApi.error("Fill all the required fields");
         const updatedErrorData = { ...prev }; // Clone the previous state
         errorFields.forEach((item) => {
@@ -429,6 +437,8 @@ const HomePage = () => {
             setCompleted={setCompleted}
             handleBack={handleBack}
             isCompletelyFilled={isCompletelyFilled}
+            isNextButtonLoading={isNextButtonLoading}
+            isPreviousButtonLoading={isPreviousButtonLoading}
           />
         )}
       </div>

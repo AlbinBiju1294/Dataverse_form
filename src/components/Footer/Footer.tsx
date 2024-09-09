@@ -1,10 +1,13 @@
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Button } from "antd";
 
 const Footer = ({
   handleNextClick,
   activeStep,
+  isNextButtonLoading,
+  isPreviousButtonLoading
 }: {
   handleNextClick: any;
   activeStep: any;
@@ -13,6 +16,8 @@ const Footer = ({
   setCompleted: any;
   handleBack: any;
   isCompletelyFilled:any;
+  isNextButtonLoading:boolean;
+  isPreviousButtonLoading:boolean;
 }) => {
   return (
     <footer className="  flex justify-center items-center w-[100%] h-[10vh] z-[998] mt-5 mb-5">
@@ -20,29 +25,37 @@ const Footer = ({
         <Button
           onClick={() => handleNextClick("previous")}
           disabled={activeStep === 0 ? true : false}
-          variant="outlined"
-          size="small"
-          startIcon={<ArrowBackIcon />}
+          size="middle"
+          icon={<ArrowBackIcon style={{fontSize:"1.1em"}}  />}
+          iconPosition="start"
+          type="primary"
+          ghost
+          loading={isPreviousButtonLoading}
         >
           Previous
         </Button>
         {activeStep !== 2 ? (
           <Button
-            variant="outlined"
-            size="small"
-            endIcon={<ArrowForwardIcon />}
+            size="middle"
+            icon={<ArrowForwardIcon style={{fontSize:"1.1em"}} />}
+            iconPosition="end"
             onClick={() => handleNextClick("next")}
+            type="primary"
+            ghost
+            loading={isNextButtonLoading}
           >
             Next
           </Button>
         ) : (
           <Button
-            variant="contained"
-            size="small"
-            endIcon={<ArrowForwardIcon />}
+            size="middle"
+            icon={<ArrowForwardIcon style={{fontSize:"1.1em"}} />}
+            iconPosition="end"
             onClick={() => {
               handleNextClick("next");
             }}
+            type="primary"
+            loading={isNextButtonLoading}
           >
             Finish
           </Button>
