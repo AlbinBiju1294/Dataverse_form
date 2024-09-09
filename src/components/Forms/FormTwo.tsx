@@ -227,7 +227,7 @@ const FormTwo = ({
             }}
           />
 
-          {file.assetphotourl && (
+          {/* {file.assetphotourl && (
             <div>
               {file && file.assetphotofile?.type.startsWith("image/") && (
                 <img
@@ -239,12 +239,12 @@ const FormTwo = ({
               {file && file.assetphotofile?.type === "application/pdf" && (
                 <iframe
                   src={file.assetphotourl}
-                  className="h-60 w-[85%]"
+                  className="w-[40px] h-[40px] rounded-full"
                   title="PDF Preview"
                 ></iframe>
               )}
             </div>
-          )}
+          )} */}
 
           {/* File Input with Button */}
           <Button
@@ -252,7 +252,7 @@ const FormTwo = ({
             component="label"
             sx={{ height: "40px", width: "17%" }}
           >
-            Upload File
+            <p className=" md:text-sm text-[8px]">Upload File</p>
             <input
               type="file"
               hidden
